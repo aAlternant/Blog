@@ -32,7 +32,7 @@ export const Registration = () => {
   });
 
   const onSubmit = async (values) => {
-    values.avatarUrl = `http://localhost:4444${imageUrl}` ?? '';
+    values.avatarUrl = `${process.env.REACT_APP_API_URL}${imageUrl}` ?? '';
     console.log(values);
     const data = await dispatch(fetchRegistration(values));
     if (!data.payload) {
@@ -69,7 +69,7 @@ export const Registration = () => {
       </Typography>
       <div className={styles.avatar}>
         <Avatar
-          src={`http://localhost:4444${imageUrl}`}
+          src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
           alt={``}
           onClick={() => inputFileRef.current.click()}
           sx={{ width: 100, height: 100 }}
