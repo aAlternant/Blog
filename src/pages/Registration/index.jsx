@@ -79,7 +79,10 @@ export const Registration = () => {
         <Avatar
           src={`${imageUrl}`}
           alt={``}
-          onClick={() => fileRef.current.click()}
+          onClick={() => {
+            console.log(fileRef);
+            fileRef.current.click();
+          }}
           sx={{ width: 100, height: 100 }}
         />
       </div>
