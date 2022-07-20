@@ -97,6 +97,7 @@ export const AddPost = () => {
       autosave: {
         enabled: true,
         delay: 1000,
+        uniqueId: 'postsave',
       },
     }),
     [],
