@@ -114,7 +114,13 @@ export const AddPost = () => {
       <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">
         Загрузить превью
       </Button>
-      <input type="file" className="simple-file-upload" ref={inputFileRef} hidden />
+      <input
+        type="hidden"
+        id="post_image_url"
+        name="post[image_url]"
+        className="simple-file-upload"
+        ref={inputFileRef}
+      />
       {imageUrl && (
         <Button variant="contained" color="error" onClick={() => onClickRemoveImage()}>
           Удалить
