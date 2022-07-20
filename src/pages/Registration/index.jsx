@@ -69,7 +69,8 @@ export const Registration = () => {
         Создание аккаунта
       </Typography>
       <input
-        type="hidden"
+        type="file"
+        hidden
         ref={fileRef}
         name="avatar_url"
         id="avatar_url"
@@ -80,7 +81,6 @@ export const Registration = () => {
           src={`${imageUrl}`}
           alt={``}
           onClick={() => {
-            console.log(fileRef);
             fileRef.current.click();
           }}
           sx={{ width: 100, height: 100 }}
