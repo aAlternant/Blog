@@ -33,7 +33,7 @@ export const Registration = () => {
   });
 
   const onSubmit = async (values) => {
-    values.avatarUrl = `${process.env.REACT_APP_API_URL}${imageUrl}` ?? '';
+    values.avatarUrl = `${imageUrl}` ?? '';
 
     const data = await dispatch(fetchRegistration(values));
     if (!data.payload) {
@@ -49,11 +49,6 @@ export const Registration = () => {
   if (isAuth) {
     return <Navigate to="/" />;
   }
-
-  const el = document.getElementById('avatar_url');
-  el.addEventListener('fileUploadSuccess', function () {
-    setImageUrl(this.value); // The url of the uploaded file
-  });
 
   // const handleChangeAvatar = async (event) => {
   //   try {
@@ -73,15 +68,18 @@ export const Registration = () => {
       <Typography classes={{ root: styles.title }} variant="h5">
         Создание аккаунта
       </Typography>
+      <input type="hidden" name="avatar_url" id="avatar_url" class="simple-file-upload" />
       <div className={styles.avatar}>
+        {document.getElementById('avatar_url').addEventListener('fileUploadSuccess', function () {
+          setImageUrl(this.value); // The url of the uploaded file
+        })}
         <Avatar
           src={`${imageUrl}`}
           alt={``}
-          onClick={() => el.click()}
+          onClick={() => document.getElementById('avatar_url').click()}
           sx={{ width: 100, height: 100 }}
         />
       </div>
-      <input type="hidden" name="avatar_url" id="avatar_url" class="simple-file-upload" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           className={styles.field}
