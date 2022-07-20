@@ -132,13 +132,7 @@ export const AddPost = () => {
           Удалить
         </Button>
       )}
-      {imageUrl && (
-        <img
-          className={styles.image}
-          src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
-          alt="Uploaded"
-        />
-      )}
+      {imageUrl && <img className={styles.image} src={`${imageUrl}`} alt="Uploaded" />}
       <br />
       <br />
       <TextField
