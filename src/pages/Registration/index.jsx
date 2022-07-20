@@ -73,7 +73,7 @@ export const Registration = () => {
         ref={fileRef}
         name="avatar_url"
         id="avatar_url"
-        class="simple-file-upload"
+        className="simple-file-upload"
       />
       <div className={styles.avatar}>
         <Avatar
