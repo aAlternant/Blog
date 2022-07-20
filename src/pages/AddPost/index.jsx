@@ -6,7 +6,7 @@ import SimpleMDE from 'react-simplemde-editor';
 
 import { useSelector } from 'react-redux';
 import { useNavigate, Navigate, useParams } from 'react-router-dom';
-import { SimpleFileUpload } from 'react-simple-file-upload';
+import SimpleFileUpload from 'react-simple-file-upload';
 import 'easymde/dist/easymde.min.css';
 import styles from './AddPost.module.scss';
 import axios from '../../axios.js';
