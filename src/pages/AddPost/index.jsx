@@ -24,18 +24,18 @@ export const AddPost = () => {
 
   const isEditing = Boolean(id);
 
-  const handleChangeFile = async (event) => {
-    try {
-      const formData = new FormData();
-      const file = event.target.files[0];
-      formData.append('image', file);
-      const { data } = await axios.post('/upload', formData);
-      setImageUrl(data.url);
-    } catch (error) {
-      console.warn(error);
-      alert('Неудачная попытка загрузить фото!');
-    }
-  };
+  // const handleChangeFile = async (event) => {
+  //   try {
+  //     const formData = new FormData();
+  //     const file = event.target.files[0];
+  //     formData.append('image', file);
+  //     const { data } = await axios.post('/upload', formData);
+  //     setImageUrl(data.url);
+  //   } catch (error) {
+  //     console.warn(error);
+  //     alert('Неудачная попытка загрузить фото!');
+  //   }
+  // };
 
   const onClickRemoveImage = async () => {
     setImageUrl('');
@@ -44,6 +44,10 @@ export const AddPost = () => {
   const onChange = React.useCallback((value) => {
     setText(value);
   }, []);
+
+  const handleFile = (url) => {
+    console.log(url);
+  };
 
   const onSubmit = async () => {
     try {
@@ -110,7 +114,7 @@ export const AddPost = () => {
       <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">
         Загрузить превью
       </Button>
-      <input type="file" ref={inputFileRef} onChange={handleChangeFile} hidden />
+      <input type="file" className="simple-file-upload" ref={inputFileRef} hidden />
       {imageUrl && (
         <Button variant="contained" color="error" onClick={() => onClickRemoveImage()}>
           Удалить
