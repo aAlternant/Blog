@@ -85,7 +85,7 @@ export const AddPost = () => {
           alert('Ошибка при получении статьи!');
         });
     }
-  });
+  }, []);
 
   const options = React.useMemo(
     () => ({
@@ -112,9 +112,9 @@ export const AddPost = () => {
       <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">
         Загрузить превью
       </Button>
-      <input type="file" ref={inputFileRef} onChange={handleChangeFile} hidden />
+      <input type="file" ref={inputFileRef} onChange={(e) => handleChangeFile(e)} hidden />
       {imageUrl && (
-        <Button variant="contained" color="error" onClick={onClickRemoveImage}>
+        <Button variant="contained" color="error" onClick={() => onClickRemoveImage()}>
           Удалить
         </Button>
       )}
@@ -143,9 +143,14 @@ export const AddPost = () => {
         onChange={(e) => setTags(e.target.value)}
         fullWidth
       />
-      <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
+      <SimpleMDE
+        className={styles.editor}
+        value={text}
+        onChange={(e) => onChange(e)}
+        options={options}
+      />
       <div className={styles.buttons}>
-        <Button size="large" onClick={onSubmit} variant="contained">
+        <Button size="large" onClick={() => onSubmit()} variant="contained">
           {isEditing ? 'Сохранить' : 'Опубликовать'}
         </Button>
         <a href="/">
