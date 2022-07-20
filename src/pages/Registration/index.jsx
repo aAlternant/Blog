@@ -52,6 +52,8 @@ export const Registration = () => {
     return <Navigate to="/" />;
   }
 
+  const handleChangeAvatar = (url) => setImageUrl(url);
+
   // const handleChangeAvatar = async (event) => {
   //   try {
   //     const formData = new FormData();
@@ -70,17 +72,12 @@ export const Registration = () => {
       <Typography classes={{ root: styles.title }} variant="h5">
         Создание аккаунта
       </Typography>
-      {/* <SimpleFileUpload 
-        apiKey = "df56b32a4b5c5e53e6bb60519cf337a8"
-        onSubmit
-      /> */}
+      <SimpleFileUpload
+        apiKey="df56b32a4b5c5e53e6bb60519cf337a8"
+        onSuccess={(url) => handleChangeAvatar(url)}
+      />
       <div className={styles.avatar}>
-        <Avatar
-          src={`${imageUrl}`}
-          alt={``}
-          onClick={useSimpleFileUpload}
-          sx={{ width: 100, height: 100 }}
-        />
+        <Avatar src={`${imageUrl}`} alt={``} sx={{ width: 100, height: 100 }} />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
