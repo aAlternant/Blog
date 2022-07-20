@@ -16,7 +16,6 @@ export const AddPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const isAuth = useSelector(selectorIsAuth);
-  const [isLoading, setIsLoading] = React.useState(false);
   const [imageUrl, setImageUrl] = React.useState('');
   const [text, setText] = React.useState('');
   const [title, setTitle] = React.useState('');
@@ -48,8 +47,6 @@ export const AddPost = () => {
 
   const onSubmit = async () => {
     try {
-      setIsLoading(true);
-
       const fields = {
         title,
         imageUrl,
@@ -85,6 +82,7 @@ export const AddPost = () => {
           alert('Ошибка при получении статьи!');
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const options = React.useMemo(
