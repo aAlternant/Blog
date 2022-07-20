@@ -72,10 +72,15 @@ export const Registration = () => {
       <Typography classes={{ root: styles.title }} variant="h5">
         Создание аккаунта
       </Typography>
-      <SimpleFileUpload
-        apiKey="df56b32a4b5c5e53e6bb60519cf337a8"
-        onSuccess={(url) => handleChangeAvatar(url)}
-      />
+      <div className={styles.upload}>
+        <SimpleFileUpload
+          apiKey="df56b32a4b5c5e53e6bb60519cf337a8"
+          onSuccess={(url) => handleChangeAvatar(url)}
+          width="70"
+          height="70"
+          preview="false"
+        />
+      </div>
       <div className={styles.avatar}>
         <Avatar src={`${imageUrl}`} alt={``} sx={{ width: 100, height: 100 }} />
       </div>
