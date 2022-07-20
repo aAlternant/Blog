@@ -8,10 +8,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { selectorIsAuth, fetchRegistration } from '../../redux/slices/auth.js';
 import { Navigate } from 'react-router-dom';
+import SimpleFileUpload from 'react-simple-file-upload';
 
 import axios from '../../axios.js';
 
 import styles from './Login.module.scss';
+import { useSimpleFileUpload } from 'react-simple-file-upload';
 
 export const Registration = () => {
   const isAuth = useSelector(selectorIsAuth);
@@ -68,21 +70,15 @@ export const Registration = () => {
       <Typography classes={{ root: styles.title }} variant="h5">
         Создание аккаунта
       </Typography>
-      <input
-        type="file"
-        hidden
-        ref={fileRef}
-        name="avatar_url"
-        id="avatar_url"
-        className="simple-file-upload"
-      />
+      {/* <SimpleFileUpload 
+        apiKey = "df56b32a4b5c5e53e6bb60519cf337a8"
+        onSubmit
+      /> */}
       <div className={styles.avatar}>
         <Avatar
           src={`${imageUrl}`}
           alt={``}
-          onClick={() => {
-            fileRef.current.click();
-          }}
+          onClick={useSimpleFileUpload}
           sx={{ width: 100, height: 100 }}
         />
       </div>
