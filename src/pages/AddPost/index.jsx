@@ -118,6 +118,7 @@ export const AddPost = () => {
           width="70"
           height="70"
           preview="false"
+          accepted="image/*"
         />
       </div>
       {imageUrl && (

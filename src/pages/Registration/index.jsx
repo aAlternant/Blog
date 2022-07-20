@@ -50,19 +50,6 @@ export const Registration = () => {
 
   const handleChangeAvatar = (url) => setImageUrl(url);
 
-  // const handleChangeAvatar = async (event) => {
-  //   try {
-  //     const formData = new FormData();
-  //     const file = event.target.files[0];
-  //     formData.append('image', file);
-  //     const { data } = await axios.post('/upload', formData);
-  //     setImageUrl(data.url);
-  //   } catch (error) {
-  //     console.warn(error);
-  //     alert('Неудачная попытка загрузить фото!');
-  //   }
-  // };
-
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
