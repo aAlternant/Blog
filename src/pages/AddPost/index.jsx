@@ -46,7 +46,7 @@ export const AddPost = () => {
   }, []);
 
   const handleFile = (url) => {
-    console.log(url);
+    setImageUrl(url);
   };
 
   const onSubmit = async () => {
