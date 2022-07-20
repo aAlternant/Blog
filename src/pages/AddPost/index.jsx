@@ -6,7 +6,7 @@ import SimpleMDE from 'react-simplemde-editor';
 
 import { useSelector } from 'react-redux';
 import { useNavigate, Navigate, useParams } from 'react-router-dom';
-
+import SimpleFileUpload from 'react-simple-file-upload';
 import 'easymde/dist/easymde.min.css';
 import styles from './AddPost.module.scss';
 import axios from '../../axios.js';
@@ -111,17 +111,21 @@ export const AddPost = () => {
 
   return (
     <Paper style={{ padding: 30 }}>
-      <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">
+      {/* <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">
         Загрузить превью
-      </Button>
-      <input
-        type="file"
+      </Button> */}
+      {/* <input
+        type="hidden"
         id="post_image_url"
         name="post[image_url]"
         className="simple-file-upload"
-        hidden
         ref={inputFileRef}
-        onChange={(e) => handleFile(e.target.value)}
+      /> */}
+      <SimpleFileUpload
+        apiKey="df56b32a4b5c5e53e6bb60519cf337a8"
+        hidden
+        onSuccess={handleFile}
+        ref={inputFileRef}
       />
       {imageUrl && (
         <Button variant="contained" color="error" onClick={() => onClickRemoveImage()}>
