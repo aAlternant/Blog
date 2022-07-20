@@ -115,10 +115,11 @@ export const AddPost = () => {
         Загрузить превью
       </Button>
       <input
-        type="hidden"
+        type="file"
         id="post_image_url"
         name="post[image_url]"
         className="simple-file-upload"
+        hidden
         ref={inputFileRef}
         onChange={(e) => handleFile(e.target.value)}
       />
