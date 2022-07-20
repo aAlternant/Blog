@@ -121,7 +121,12 @@ export const AddPost = () => {
         className="simple-file-upload"
         ref={inputFileRef}
       /> */}
-      <SimpleFileUpload apiKey="df56b32a4b5c5e53e6bb60519cf337a8" onSuccess={handleFile} />
+      <SimpleFileUpload
+        apiKey="df56b32a4b5c5e53e6bb60519cf337a8"
+        hidden
+        onSuccess={handleFile}
+        ref={inputFileRef}
+      />
       {imageUrl && (
         <Button variant="contained" color="error" onClick={() => onClickRemoveImage()}>
           Удалить
