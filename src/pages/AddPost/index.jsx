@@ -20,22 +20,8 @@ export const AddPost = () => {
   const [text, setText] = React.useState('');
   const [title, setTitle] = React.useState('');
   const [tags, setTags] = React.useState('');
-  const inputFileRef = React.useRef(null);
 
   const isEditing = Boolean(id);
-
-  // const handleChangeFile = async (event) => {
-  //   try {
-  //     const formData = new FormData();
-  //     const file = event.target.files[0];
-  //     formData.append('image', file);
-  //     const { data } = await axios.post('/upload', formData);
-  //     setImageUrl(data.url);
-  //   } catch (error) {
-  //     console.warn(error);
-  //     alert('Неудачная попытка загрузить фото!');
-  //   }
-  // };
 
   const onClickRemoveImage = async () => {
     setImageUrl('');
