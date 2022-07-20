@@ -111,26 +111,21 @@ export const AddPost = () => {
 
   return (
     <Paper style={{ padding: 30 }}>
-      {/* <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">
-        Загрузить превью
-      </Button> */}
-      {/* <input
-        type="hidden"
-        id="post_image_url"
-        name="post[image_url]"
-        className="simple-file-upload"
-        ref={inputFileRef}
-      /> */}
-      <SimpleFileUpload
-        apiKey="df56b32a4b5c5e53e6bb60519cf337a8"
-        hidden
-        onSuccess={handleFile}
-        ref={inputFileRef}
-      />
+      <div className={styles.upload}>
+        <SimpleFileUpload
+          apiKey="df56b32a4b5c5e53e6bb60519cf337a8"
+          onSuccess={handleFile}
+          width="70"
+          height="70"
+          preview="false"
+        />
+      </div>
       {imageUrl && (
-        <Button variant="contained" color="error" onClick={() => onClickRemoveImage()}>
-          Удалить
-        </Button>
+        <div className={styles.cancel_btn}>
+          <Button variant="contained" color="error" onClick={() => onClickRemoveImage()}>
+            Удалить
+          </Button>
+        </div>
       )}
       {imageUrl && <img className={styles.image} src={`${imageUrl}`} alt="Uploaded" />}
       <br />

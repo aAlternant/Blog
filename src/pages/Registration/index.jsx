@@ -10,16 +10,12 @@ import { selectorIsAuth, fetchRegistration } from '../../redux/slices/auth.js';
 import { Navigate } from 'react-router-dom';
 import SimpleFileUpload from 'react-simple-file-upload';
 
-import axios from '../../axios.js';
-
 import styles from './Login.module.scss';
-import { useSimpleFileUpload } from 'react-simple-file-upload';
 
 export const Registration = () => {
   const isAuth = useSelector(selectorIsAuth);
   const dispatch = useDispatch();
   const [imageUrl, setImageUrl] = React.useState(undefined);
-  const fileRef = React.useRef(null);
 
   const {
     register,
