@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { selectorIsAuth, fetchRegistration } from '../../redux/slices/auth.js';
 import { Navigate } from 'react-router-dom';
+import { useSimpleFileUpload } from 'react-simple-file-upload';
 
 import axios from '../../axios.js';
 
@@ -17,7 +18,7 @@ export const Registration = () => {
   const isAuth = useSelector(selectorIsAuth);
   const dispatch = useDispatch();
   const [imageUrl, setImageUrl] = React.useState(undefined);
-  const inputFileRef = React.useRef(null);
+
   const {
     register,
     handleSubmit,
@@ -33,7 +34,7 @@ export const Registration = () => {
 
   const onSubmit = async (values) => {
     values.avatarUrl = `${process.env.REACT_APP_API_URL}${imageUrl}` ?? '';
-    console.log(values);
+
     const data = await dispatch(fetchRegistration(values));
     if (!data.payload) {
       return alert('Регистрация не удалась!');
@@ -49,18 +50,23 @@ export const Registration = () => {
     return <Navigate to="/" />;
   }
 
-  const handleChangeAvatar = async (event) => {
-    try {
-      const formData = new FormData();
-      const file = event.target.files[0];
-      formData.append('image', file);
-      const { data } = await axios.post('/upload', formData);
-      setImageUrl(data.url);
-    } catch (error) {
-      console.warn(error);
-      alert('Неудачная попытка загрузить фото!');
-    }
-  };
+  const el = document.getElementById('avatar_url');
+  el.addEventListener('fileUploadSuccess', function () {
+    setImageUrl(this.value); // The url of the uploaded file
+  });
+
+  // const handleChangeAvatar = async (event) => {
+  //   try {
+  //     const formData = new FormData();
+  //     const file = event.target.files[0];
+  //     formData.append('image', file);
+  //     const { data } = await axios.post('/upload', formData);
+  //     setImageUrl(data.url);
+  //   } catch (error) {
+  //     console.warn(error);
+  //     alert('Неудачная попытка загрузить фото!');
+  //   }
+  // };
 
   return (
     <Paper classes={{ root: styles.root }}>
@@ -69,13 +75,13 @@ export const Registration = () => {
       </Typography>
       <div className={styles.avatar}>
         <Avatar
-          src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
+          src={`${imageUrl}`}
           alt={``}
-          onClick={() => inputFileRef.current.click()}
+          onClick={() => el.click()}
           sx={{ width: 100, height: 100 }}
         />
       </div>
-      <input type="file" ref={inputFileRef} onChange={handleChangeAvatar} hidden />
+      <input type="hidden" name="avatar_url" id="avatar_url" class="simple-file-upload" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           className={styles.field}
